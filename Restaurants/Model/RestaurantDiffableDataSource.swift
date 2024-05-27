@@ -7,6 +7,14 @@
 
 import UIKit
 
-class RestaurantDiffableDataSource: UITableViewDiffableDataSource {
+enum Section {
+    case all
+}
 
+
+class RestaurantDiffableDataSource: UITableViewDiffableDataSource<Section, Restaurant> {
+
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        true
+    }
 }

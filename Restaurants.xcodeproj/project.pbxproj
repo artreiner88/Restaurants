@@ -9,21 +9,38 @@
 /* Begin PBXBuildFile section */
 		6E3E9BD52BEEAE7D008BA067 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3E9BD42BEEAE7D008BA067 /* AppDelegate.swift */; };
 		6E3E9BD72BEEAE7D008BA067 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3E9BD62BEEAE7D008BA067 /* SceneDelegate.swift */; };
-		6E3E9BD92BEEAE7D008BA067 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3E9BD82BEEAE7D008BA067 /* ViewController.swift */; };
-		6E3E9BDC2BEEAE7D008BA067 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 6E3E9BDB2BEEAE7D008BA067 /* Base */; };
 		6E3E9BDE2BEEAE7F008BA067 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E3E9BDD2BEEAE7F008BA067 /* Assets.xcassets */; };
 		6E3E9BE12BEEAE7F008BA067 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 6E3E9BE02BEEAE7F008BA067 /* Base */; };
+		6E44205D2BF2659200137DDD /* RLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E44205C2BF2659200137DDD /* RLabel.swift */; };
+		6E44205F2BF26DBD00137DDD /* RImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E44205E2BF26DBD00137DDD /* RImageView.swift */; };
+		6EAC50E12BEECB1000499C9F /* RestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAC50E02BEECB1000499C9F /* RestaurantCell.swift */; };
+		6EAC50E32BEFBEDD00499C9F /* RestaurantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAC50E22BEFBEDD00499C9F /* RestaurantTableViewController.swift */; };
+		6EBF421B2C038A1F008E6725 /* RestaurantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBF421A2C038A1F008E6725 /* RestaurantDetailViewController.swift */; };
+		6EBF42202C04AFCE008E6725 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6EBF421E2C04AF8A008E6725 /* Nunito-Regular.ttf */; };
+		6EBF42212C04AFCE008E6725 /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6EBF421F2C04AF8A008E6725 /* Nunito-Bold.ttf */; };
+		6EBF42232C04B489008E6725 /* RestaurantDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBF42222C04B489008E6725 /* RestaurantDetailHeaderView.swift */; };
+		6EEDD2752BF550C900701F8F /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEDD2742BF550C900701F8F /* Restaurant.swift */; };
+		6EEDD27B2BF7D93800701F8F /* RestaurantDiffableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEDD27A2BF7D93800701F8F /* RestaurantDiffableDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6E3E9BD12BEEAE7D008BA067 /* Restaurants.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Restaurants.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E3E9BD42BEEAE7D008BA067 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6E3E9BD62BEEAE7D008BA067 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		6E3E9BD82BEEAE7D008BA067 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		6E3E9BDB2BEEAE7D008BA067 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6E3E9BDD2BEEAE7F008BA067 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6E3E9BE02BEEAE7F008BA067 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6E3E9BE22BEEAE7F008BA067 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6E44205C2BF2659200137DDD /* RLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLabel.swift; sourceTree = "<group>"; };
+		6E44205E2BF26DBD00137DDD /* RImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RImageView.swift; sourceTree = "<group>"; };
+		6EAC50E02BEECB1000499C9F /* RestaurantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCell.swift; sourceTree = "<group>"; };
+		6EAC50E22BEFBEDD00499C9F /* RestaurantTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewController.swift; sourceTree = "<group>"; };
+		6EBF421A2C038A1F008E6725 /* RestaurantDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewController.swift; sourceTree = "<group>"; };
+		6EBF421E2C04AF8A008E6725 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
+		6EBF421F2C04AF8A008E6725 /* Nunito-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Bold.ttf"; sourceTree = "<group>"; };
+		6EBF42222C04B489008E6725 /* RestaurantDetailHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailHeaderView.swift; sourceTree = "<group>"; };
+		6EBF42242C04F35F008E6725 /* .gitignore.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = .gitignore.md; sourceTree = "<group>"; };
+		6EEDD2742BF550C900701F8F /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		6EEDD27A2BF7D93800701F8F /* RestaurantDiffableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDiffableDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +73,72 @@
 		6E3E9BD32BEEAE7D008BA067 /* Restaurants */ = {
 			isa = PBXGroup;
 			children = (
+				6EBF421C2C04AEDF008E6725 /* Resources */,
+				6EEDD2782BF55C6D00701F8F /* Controllers */,
+				6EEDD2772BF55C6500701F8F /* Model */,
+				6EEDD2762BF55C5C00701F8F /* Views */,
 				6E3E9BD42BEEAE7D008BA067 /* AppDelegate.swift */,
 				6E3E9BD62BEEAE7D008BA067 /* SceneDelegate.swift */,
-				6E3E9BD82BEEAE7D008BA067 /* ViewController.swift */,
-				6E3E9BDA2BEEAE7D008BA067 /* Main.storyboard */,
 				6E3E9BDD2BEEAE7F008BA067 /* Assets.xcassets */,
 				6E3E9BDF2BEEAE7F008BA067 /* LaunchScreen.storyboard */,
 				6E3E9BE22BEEAE7F008BA067 /* Info.plist */,
+				6EBF42242C04F35F008E6725 /* .gitignore.md */,
 			);
 			path = Restaurants;
+			sourceTree = "<group>";
+		};
+		6E44205B2BF2655700137DDD /* UIElements */ = {
+			isa = PBXGroup;
+			children = (
+				6E44205C2BF2659200137DDD /* RLabel.swift */,
+				6E44205E2BF26DBD00137DDD /* RImageView.swift */,
+			);
+			path = UIElements;
+			sourceTree = "<group>";
+		};
+		6EBF421C2C04AEDF008E6725 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6EBF421D2C04AEE6008E6725 /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		6EBF421D2C04AEE6008E6725 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				6EBF421F2C04AF8A008E6725 /* Nunito-Bold.ttf */,
+				6EBF421E2C04AF8A008E6725 /* Nunito-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		6EEDD2762BF55C5C00701F8F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6E44205B2BF2655700137DDD /* UIElements */,
+				6EAC50E02BEECB1000499C9F /* RestaurantCell.swift */,
+				6EBF42222C04B489008E6725 /* RestaurantDetailHeaderView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		6EEDD2772BF55C6500701F8F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6EEDD2742BF550C900701F8F /* Restaurant.swift */,
+				6EEDD27A2BF7D93800701F8F /* RestaurantDiffableDataSource.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6EEDD2782BF55C6D00701F8F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6EAC50E22BEFBEDD00499C9F /* RestaurantTableViewController.swift */,
+				6EBF421A2C038A1F008E6725 /* RestaurantDetailViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +201,8 @@
 			files = (
 				6E3E9BDE2BEEAE7F008BA067 /* Assets.xcassets in Resources */,
 				6E3E9BE12BEEAE7F008BA067 /* Base in Resources */,
-				6E3E9BDC2BEEAE7D008BA067 /* Base in Resources */,
+				6EBF42202C04AFCE008E6725 /* Nunito-Regular.ttf in Resources */,
+				6EBF42212C04AFCE008E6725 /* Nunito-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +213,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E3E9BD92BEEAE7D008BA067 /* ViewController.swift in Sources */,
+				6EAC50E12BEECB1000499C9F /* RestaurantCell.swift in Sources */,
+				6EAC50E32BEFBEDD00499C9F /* RestaurantTableViewController.swift in Sources */,
+				6E44205F2BF26DBD00137DDD /* RImageView.swift in Sources */,
+				6EBF42232C04B489008E6725 /* RestaurantDetailHeaderView.swift in Sources */,
 				6E3E9BD52BEEAE7D008BA067 /* AppDelegate.swift in Sources */,
 				6E3E9BD72BEEAE7D008BA067 /* SceneDelegate.swift in Sources */,
+				6E44205D2BF2659200137DDD /* RLabel.swift in Sources */,
+				6EEDD27B2BF7D93800701F8F /* RestaurantDiffableDataSource.swift in Sources */,
+				6EBF421B2C038A1F008E6725 /* RestaurantDetailViewController.swift in Sources */,
+				6EEDD2752BF550C900701F8F /* Restaurant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		6E3E9BDA2BEEAE7D008BA067 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6E3E9BDB2BEEAE7D008BA067 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		6E3E9BDF2BEEAE7F008BA067 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -297,7 +371,7 @@
 				INFOPLIST_FILE = Restaurants/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -307,6 +381,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = home.personal.Restaurants;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -325,7 +403,7 @@
 				INFOPLIST_FILE = Restaurants/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -335,6 +413,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = home.personal.Restaurants;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

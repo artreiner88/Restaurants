@@ -25,12 +25,10 @@ class RImageView: UIImageView {
         configure(with: width, and: height)
     }
     
-    func configure(with width: CGFloat, and height: CGFloat) {
-        
+    private func configure(with width: CGFloat, and height: CGFloat) {
         NSLayoutConstraint.activate([
             heightAnchor.constraint(equalToConstant: height),
             widthAnchor.constraint(equalToConstant: width)
         ])
     }
-    
 }

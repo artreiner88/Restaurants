@@ -17,10 +17,11 @@ class RLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(font: UIFont.TextStyle, color: UIColor = .label) {
-        super.init(frame: .zero)
+    convenience init(font: UIFont.TextStyle, color: UIColor = .label) {
+        self.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         self.font = UIFont.preferredFont(forTextStyle: font)
+        numberOfLines = 0
         textColor = color
     }
 }
