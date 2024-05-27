@@ -10,9 +10,9 @@ import UIKit
 class RestaurantDetailHeaderView: UIView {
     
     private var restaurantImageView: RImageView = {
-        let image = RImageView(frame: .zero)
-        image.contentMode = .scaleAspectFill
-        return image
+        let imageView = RImageView(frame: .zero)
+        imageView.contentMode = .scaleAspectFill
+        return imageView
     }()
     
     private var restaurantNameLabel: RLabel = {
