@@ -19,6 +19,7 @@
 		6EBF42202C04AFCE008E6725 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6EBF421E2C04AF8A008E6725 /* Nunito-Regular.ttf */; };
 		6EBF42212C04AFCE008E6725 /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6EBF421F2C04AF8A008E6725 /* Nunito-Bold.ttf */; };
 		6EBF42232C04B489008E6725 /* RestaurantDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBF42222C04B489008E6725 /* RestaurantDetailHeaderView.swift */; };
+		6EBF42262C04F769008E6725 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 6EBF42252C04F769008E6725 /* .gitignore */; };
 		6EEDD2752BF550C900701F8F /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEDD2742BF550C900701F8F /* Restaurant.swift */; };
 		6EEDD27B2BF7D93800701F8F /* RestaurantDiffableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEDD27A2BF7D93800701F8F /* RestaurantDiffableDataSource.swift */; };
 /* End PBXBuildFile section */
@@ -38,7 +39,7 @@
 		6EBF421E2C04AF8A008E6725 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
 		6EBF421F2C04AF8A008E6725 /* Nunito-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Bold.ttf"; sourceTree = "<group>"; };
 		6EBF42222C04B489008E6725 /* RestaurantDetailHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailHeaderView.swift; sourceTree = "<group>"; };
-		6EBF42242C04F35F008E6725 /* .gitignore.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = .gitignore.md; sourceTree = "<group>"; };
+		6EBF42252C04F769008E6725 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		6EEDD2742BF550C900701F8F /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		6EEDD27A2BF7D93800701F8F /* RestaurantDiffableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDiffableDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -82,7 +83,7 @@
 				6E3E9BDD2BEEAE7F008BA067 /* Assets.xcassets */,
 				6E3E9BDF2BEEAE7F008BA067 /* LaunchScreen.storyboard */,
 				6E3E9BE22BEEAE7F008BA067 /* Info.plist */,
-				6EBF42242C04F35F008E6725 /* .gitignore.md */,
+				6EBF42252C04F769008E6725 /* .gitignore */,
 			);
 			path = Restaurants;
 			sourceTree = "<group>";
@@ -199,6 +200,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EBF42262C04F769008E6725 /* .gitignore in Resources */,
 				6E3E9BDE2BEEAE7F008BA067 /* Assets.xcassets in Resources */,
 				6E3E9BE12BEEAE7F008BA067 /* Base in Resources */,
 				6EBF42202C04AFCE008E6725 /* Nunito-Regular.ttf in Resources */,
