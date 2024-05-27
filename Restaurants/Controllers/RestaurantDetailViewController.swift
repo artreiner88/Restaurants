@@ -33,6 +33,7 @@ class RestaurantDetailViewController: UIViewController {
     }
     
     private func setupLayout() {
+        UITableView.appearance().sectionHeaderTopPadding = 0
         view.addSubview(tableView)
         
         NSLayoutConstraint.activate([

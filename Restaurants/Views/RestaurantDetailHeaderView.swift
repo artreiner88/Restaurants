@@ -15,6 +15,14 @@ class RestaurantDetailHeaderView: UIView {
         return imageView
     }()
     
+    private var dimView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .black
+        view.layer.opacity = 0.2
+        return view
+    }()
+    
     private var restaurantNameLabel: RLabel = {
         let label = RLabel(font: .title1, color: .white)
         return label
@@ -29,10 +37,6 @@ class RestaurantDetailHeaderView: UIView {
     private var favoriteButton: UIButton = {
         let button = UIButton(frame: .zero)
         button.translatesAutoresizingMaskIntoConstraints = false
-        let configuration = UIImage.SymbolConfiguration(pointSize: 30)
-        let image = UIImage(systemName: "heart", withConfiguration: configuration)
-        button.setImage(image, for: .normal)
-        button.tintColor = .white
         return button
     }()
     
@@ -59,6 +63,7 @@ class RestaurantDetailHeaderView: UIView {
         addSubview(restaurantImageView)
         addSubview(headerLabelsStackView)
         addSubview(favoriteButton)
+        addSubview(dimView)
         
         NSLayoutConstraint.activate([
             
@@ -71,7 +76,12 @@ class RestaurantDetailHeaderView: UIView {
             headerLabelsStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
             
             favoriteButton.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            favoriteButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
+            favoriteButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            
+            dimView.topAnchor.constraint(equalTo: restaurantImageView.topAnchor),
+            dimView.leadingAnchor.constraint(equalTo: restaurantImageView.leadingAnchor),
+            dimView.trailingAnchor.constraint(equalTo: restaurantImageView.trailingAnchor),
+            dimView.bottomAnchor.constraint(equalTo: restaurantImageView.bottomAnchor),
         ])
     }
     
@@ -79,5 +89,10 @@ class RestaurantDetailHeaderView: UIView {
         restaurantImageView.image = UIImage(named: restaurant.image)
         restaurantNameLabel.text = restaurant.name
         restaurantTypeLabel.text = restaurant.type
+        
+        favoriteButton.tintColor = restaurant.isFavorite ? .systemRed : .white
+        let heartImage = restaurant.isFavorite ? "heart.fill" : "heart"
+        let configuration = UIImage.SymbolConfiguration(pointSize: 30)
+        favoriteButton.setImage(UIImage(systemName: heartImage, withConfiguration: configuration), for: .normal)
     }
 }
