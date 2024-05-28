@@ -13,7 +13,7 @@ class RestaurantContactsDataCell: UITableViewCell {
     
     private var addressLabel: RLabel = {
         let label = RLabel(font: .headline)
-        label.text = label.text?.uppercased()
+        label.text = "ADDRESS"
         return label
     }()
     
@@ -24,7 +24,7 @@ class RestaurantContactsDataCell: UITableViewCell {
     
     private var phoneLabel: RLabel = {
         let label = RLabel(font: .headline)
-        label.text = label.text?.uppercased()
+        label.text = "PHONE"
         return label
     }()
     
@@ -35,6 +35,7 @@ class RestaurantContactsDataCell: UITableViewCell {
     
     private lazy var locationStackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [addressLabel, fullAddressLabel])
+        stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
         stack.distribution = .equalSpacing
         stack.spacing = 8
@@ -43,6 +44,7 @@ class RestaurantContactsDataCell: UITableViewCell {
     
     private lazy var contactsStackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [phoneLabel, phoneNumberLabel])
+        stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
         stack.distribution = .equalSpacing
         stack.spacing = 8
@@ -51,6 +53,7 @@ class RestaurantContactsDataCell: UITableViewCell {
     
     private lazy var addressStackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [locationStackView, contactsStackView])
+        stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
         stack.alignment = .top
         stack.distribution = .fillEqually
@@ -71,10 +74,15 @@ class RestaurantContactsDataCell: UITableViewCell {
         addSubview(addressStackView)
         
         NSLayoutConstraint.activate([
-            addressStackView.topAnchor.constraint(equalTo: topAnchor),
-            addressStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            addressStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            addressStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            addressStackView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            addressStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            addressStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            addressStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
         ])
+    }
+    
+    func setData(address: String, phone: String) {
+        fullAddressLabel.text = address
+        phoneNumberLabel.text = phone
     }
 }

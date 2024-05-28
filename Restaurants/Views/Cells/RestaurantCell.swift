@@ -9,7 +9,7 @@ import UIKit
 
 class RestaurantCell: UITableViewCell {
     
-    static let cellID = "cell"
+    static let cellID = "restaurantCell"
     
     private let restaurantImageView = RImageView(width: 130, height: 130)
     private let restaurantNameLabel = RLabel(font: .title2)

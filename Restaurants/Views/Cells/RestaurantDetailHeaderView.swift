@@ -11,6 +11,7 @@ class RestaurantDetailHeaderView: UIView {
     
     private var restaurantImageView: RImageView = {
         let imageView = RImageView(frame: .zero)
+        imageView.layer.cornerRadius = 0
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()

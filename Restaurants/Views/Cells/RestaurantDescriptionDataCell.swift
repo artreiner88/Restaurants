@@ -9,7 +9,7 @@ import UIKit
 
 class RestaurantDescriptionDataCell: UITableViewCell {
     
-    static let cellID = "descriptionTextCell"
+    static let cellID = "descriptionDataCell"
     
     private var descriptionLabel: RLabel = {
         let label = RLabel(font: .body)
@@ -29,10 +29,14 @@ class RestaurantDescriptionDataCell: UITableViewCell {
         addSubview(descriptionLabel)
         
         NSLayoutConstraint.activate([
-            descriptionLabel.topAnchor.constraint(equalTo: topAnchor),
-            descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
+            descriptionLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16)
         ])
+    }
+    
+    func setDescription(text: String) {
+        descriptionLabel.text = text
     }
 }
