@@ -11,7 +11,7 @@ class RestaurantCell: UITableViewCell {
     
     static let cellID = "restaurantCell"
     
-    private let restaurantImageView = RImageView(width: 130, height: 130)
+    private let restaurantImageView = RImageView(width: 120, height: 120)
     private let restaurantNameLabel = RLabel(font: .title2)
     private let locationLabel = RLabel(font: .body)
     private let restaurantTypeLabel = RLabel(font: .subheadline, color: .systemGray)
@@ -23,7 +23,7 @@ class RestaurantCell: UITableViewCell {
         [restaurantNameLabel, locationLabel, restaurantTypeLabel]
             .forEach { stack.addArrangedSubview($0) }
         stack.axis = .vertical
-        stack.distribution = .fill
+        stack.distribution = .fillProportionally
         stack.spacing = 4
         return stack
     }()
@@ -37,7 +37,7 @@ class RestaurantCell: UITableViewCell {
         stack.axis = .horizontal
         stack.distribution = .fill
         stack.alignment = .top
-        stack.spacing = 20
+        stack.spacing = 16
         return stack
     }()
     
@@ -54,9 +54,10 @@ class RestaurantCell: UITableViewCell {
     private func setupLayout() {
         addSubview(stackViewHorizontal)
         NSLayoutConstraint.activate([
-            stackViewHorizontal.centerYAnchor.constraint(equalTo: centerYAnchor),
+            stackViewHorizontal.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             stackViewHorizontal.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             stackViewHorizontal.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            stackViewHorizontal.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)
         ])
     }
     

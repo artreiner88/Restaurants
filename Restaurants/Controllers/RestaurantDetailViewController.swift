@@ -14,6 +14,7 @@ class RestaurantDetailViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(RestaurantDescriptionDataCell.self, forCellReuseIdentifier: RestaurantDescriptionDataCell.cellID)
         tableView.register(RestaurantContactsDataCell.self, forCellReuseIdentifier: RestaurantContactsDataCell.cellID)
+        tableView.contentInsetAdjustmentBehavior = .never
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
         tableView.delegate = self
@@ -48,8 +49,8 @@ class RestaurantDetailViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
             headerView.topAnchor.constraint(equalTo: tableView.topAnchor),
-            headerView.leadingAnchor.constraint(equalTo: tableView.safeAreaLayoutGuide.leadingAnchor),
-            headerView.trailingAnchor.constraint(equalTo: tableView.safeAreaLayoutGuide.trailingAnchor),
+            headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             headerView.heightAnchor.constraint(equalToConstant: 400),
         ])
     }

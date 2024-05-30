@@ -21,6 +21,8 @@ class RLabel: UILabel {
         self.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         self.font = UIFont.preferredFont(forTextStyle: font)
+        adjustsFontSizeToFitWidth = true
+        minimumScaleFactor = 0.5
         numberOfLines = 0
         textColor = color
     }

@@ -75,8 +75,8 @@ class RestaurantContactsDataCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             addressStackView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            addressStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            addressStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            addressStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            addressStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             addressStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
         ])
     }

@@ -73,11 +73,11 @@ class RestaurantDetailHeaderView: UIView {
             restaurantImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             restaurantImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            headerLabelsStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            headerLabelsStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
             headerLabelsStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
             
-            favoriteButton.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            favoriteButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            favoriteButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            favoriteButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             
             dimView.topAnchor.constraint(equalTo: restaurantImageView.topAnchor),
             dimView.leadingAnchor.constraint(equalTo: restaurantImageView.leadingAnchor),

@@ -14,9 +14,10 @@ class RestaurantTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Restaurants"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        tableView.rowHeight = 170
+        
+        configureNavbar()
+        
+        tableView.rowHeight = 140
         tableView.separatorStyle = .none
         tableView.dataSource = dataSource
         setupLongPressGestureRecognizer()
@@ -25,6 +26,22 @@ class RestaurantTableViewController: UITableViewController {
         snapshot.appendSections([.all])
         snapshot.appendItems(restaurants, toSection: .all)
         dataSource.apply(snapshot, animatingDifferences: true)
+    }
+    
+    private func configureNavbar() {
+        title = "Restaurants"
+        navigationItem.backButtonTitle = ""
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        guard let appearance = navigationController?.navigationBar.standardAppearance else { return }
+        appearance.configureWithTransparentBackground()
+        
+        appearance.titleTextAttributes = [.foregroundColor: UIColor(red: 218/255, green: 96/255, blue: 51/255, alpha: 1.0)]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor(red: 218/255, green: 96/255, blue: 51/255, alpha: 1.0)]
+        
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
     
     private func configureDataSource() -> RestaurantDiffableDataSource {
