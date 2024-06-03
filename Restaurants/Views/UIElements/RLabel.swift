@@ -22,6 +22,7 @@ class RLabel: UILabel {
         translatesAutoresizingMaskIntoConstraints = false
         self.font = UIFont.preferredFont(forTextStyle: font)
         adjustsFontSizeToFitWidth = true
+        adjustsFontForContentSizeCategory = true
         minimumScaleFactor = 0.5
         numberOfLines = 0
         textColor = color

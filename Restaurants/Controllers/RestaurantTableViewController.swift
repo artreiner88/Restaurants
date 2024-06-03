@@ -14,18 +14,27 @@ class RestaurantTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureNavbar()
-        
-        tableView.rowHeight = 140
-        tableView.separatorStyle = .none
-        tableView.dataSource = dataSource
+        configureTableView()
         setupLongPressGestureRecognizer()
         
         var snapshot = NSDiffableDataSourceSnapshot<Section, Restaurant>()
         snapshot.appendSections([.all])
         snapshot.appendItems(restaurants, toSection: .all)
         dataSource.apply(snapshot, animatingDifferences: true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.hidesBarsOnSwipe = true
+    }
+    
+    private func configureTableView() {
+        tableView.estimatedRowHeight = 140
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.separatorStyle = .none
+        tableView.cellLayoutMarginsFollowReadableWidth = true
+        tableView.dataSource = dataSource
     }
     
     private func configureNavbar() {
@@ -93,10 +102,6 @@ class RestaurantTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         true
-    }
-    
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
     }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
