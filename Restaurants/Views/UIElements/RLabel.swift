@@ -19,12 +19,16 @@ class RLabel: UILabel {
     
     convenience init(font: UIFont.TextStyle, color: UIColor = .label) {
         self.init(frame: .zero)
+        configure(font: font, color: color)
+    }
+    
+    private func configure(font: UIFont.TextStyle, color: UIColor = .label) {
         translatesAutoresizingMaskIntoConstraints = false
         self.font = UIFont.preferredFont(forTextStyle: font)
+        textColor = color
         adjustsFontSizeToFitWidth = true
         adjustsFontForContentSizeCategory = true
         minimumScaleFactor = 0.5
         numberOfLines = 0
-        textColor = color
     }
 }
