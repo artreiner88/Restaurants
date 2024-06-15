@@ -57,6 +57,7 @@ class RestaurantViewController: UIViewController {
     private let rateRestaurantButton: RButton = {
         let button = RButton(style: .filled(), textStyle: .headline, color: UIColor(red: 218/255, green: 96/255, blue: 51/255, alpha: 1.0))
         button.setTitle("Rate it", for: .normal)
+        button.addTarget(RestaurantViewController.self, action: #selector(rateButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -75,6 +76,11 @@ class RestaurantViewController: UIViewController {
         let mapVC = MapViewController()
         mapVC.restaurant = restaurant
         navigationController?.pushViewController(mapVC, animated: true)
+    }
+    
+    @objc private func rateButtonTapped() {
+        let reviewVC = ReviewViewController()
+        present(reviewVC, animated: true)
     }
     
     private func configureNavBar() {
