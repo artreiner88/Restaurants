@@ -12,7 +12,7 @@ class RestaurantViewController: UIViewController {
     var restaurant: Restaurant!
     
     private let scrollView: UIScrollView = {
-        let scrollView = UIScrollView(frame: .zero)
+        let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.showsVerticalScrollIndicator = false
         scrollView.contentInsetAdjustmentBehavior = .never
@@ -20,20 +20,20 @@ class RestaurantViewController: UIViewController {
     }()
     
     private let contentView: UIView = {
-        let view = UIView(frame: .zero)
+        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     private lazy var restaurantHeaderView: RestaurantHeaderView = {
-        let view = RestaurantHeaderView(frame: .zero)
+        let view = RestaurantHeaderView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.configure(with: restaurant)
         return view
     }()
     
     private lazy var restaurantDescriptionView: RestaurantDescriptionView = {
-        let view = RestaurantDescriptionView(frame: .zero)
+        let view = RestaurantDescriptionView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setDescription(text: restaurant.description)
         return view
@@ -47,17 +47,16 @@ class RestaurantViewController: UIViewController {
     }()
     
     private lazy var restaurantMapView: RestaurantMapView = {
-        let view = RestaurantMapView(frame: .zero)
+        let view = RestaurantMapView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(restaurantMapViewTapped)))
         view.configure(with: restaurant.location)
         return view
     }()
     
-    private let rateRestaurantButton: RButton = {
-        let button = RButton(style: .filled(), textStyle: .headline, color: UIColor(red: 218/255, green: 96/255, blue: 51/255, alpha: 1.0))
-        button.setTitle("Rate it", for: .normal)
-        button.addTarget(RestaurantViewController.self, action: #selector(rateButtonTapped), for: .touchUpInside)
+    private lazy var rateRestaurantButton: RButton = {
+        let button = RButton(backgroundColor: UIColor(red: 218/255, green: 96/255, blue: 51/255, alpha: 1.0), title: "Rate it")
+        button.addTarget(self, action: #selector(rateButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -80,6 +79,8 @@ class RestaurantViewController: UIViewController {
     
     @objc private func rateButtonTapped() {
         let reviewVC = ReviewViewController()
+        reviewVC.restaurant = restaurant
+//        let navController = UINavigationController(rootViewController: reviewVC)
         present(reviewVC, animated: true)
     }
     

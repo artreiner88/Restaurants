@@ -17,21 +17,29 @@ class RButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    convenience init(style: UIButton.Configuration, textStyle: UIFont.TextStyle, color: UIColor) {
+    convenience init(backgroundColor: UIColor, title: String) {
         self.init(frame: .zero)
-        configure(style: style, textStyle: textStyle, color: color)
+        self.backgroundColor = backgroundColor
+        setTitle(title, for: .normal)
+        configure()
+    }
+    
+    private func configure() {
+        translatesAutoresizingMaskIntoConstraints = false
+        layer.cornerRadius = 10
+        titleLabel?.textColor = .white
+        titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
     }
     
     private func configure(style: UIButton.Configuration, textStyle: UIFont.TextStyle, color: UIColor) {
-        translatesAutoresizingMaskIntoConstraints = false
         var configuration = style
         configuration.baseBackgroundColor = color
         configuration.titleTextAttributesTransformer =
-          UIConfigurationTextAttributesTransformer { incoming in
+        UIConfigurationTextAttributesTransformer { incoming in
             var outgoing = incoming
             outgoing.font = UIFont.preferredFont(forTextStyle: textStyle)
             return outgoing
-          }
+        }
         self.configuration = configuration
     }
 }

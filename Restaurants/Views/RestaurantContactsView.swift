@@ -10,19 +10,28 @@ import UIKit
 class RestaurantContactsView: UIView {
     
     private var addressLabel: RLabel = {
-        let label = RLabel(font: .headline)
+        let label = RLabel()
+        label.font = UIFont.preferredFont(forTextStyle: .headline)
         label.text = "ADDRESS"
         return label
     }()
     
     private var phoneLabel: RLabel = {
-        let label = RLabel(font: .headline)
+        let label = RLabel()
+        label.font = UIFont.preferredFont(forTextStyle: .headline)
         label.text = "PHONE"
         return label
     }()
     
-    private let fullAddressLabel = RLabel(font: .body)
-    private let phoneNumberLabel = RLabel(font: .body)
+    private let fullAddressLabel: RLabel = {
+        let label = RLabel()
+        return label
+    }()
+    
+    private let phoneNumberLabel: RLabel = {
+        let label = RLabel()
+        return label
+    }()
     
     private lazy var locationStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [addressLabel, fullAddressLabel])

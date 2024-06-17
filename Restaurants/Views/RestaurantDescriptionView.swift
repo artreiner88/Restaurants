@@ -10,7 +10,7 @@ import UIKit
 class RestaurantDescriptionView: UIView {
     
     private var descriptionLabel: RLabel = {
-        let label = RLabel(font: .body)
+        let label = RLabel()
         return label
     }()
     

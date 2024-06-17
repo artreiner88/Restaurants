@@ -12,9 +12,25 @@ class RestaurantCell: UITableViewCell {
     static let cellID = "restaurantCell"
     
     private let restaurantImageView = RImageView(width: 120, height: 120)
-    private let restaurantNameLabel = RLabel(font: .title2)
-    private let locationLabel = RLabel(font: .body)
-    private let restaurantTypeLabel = RLabel(font: .subheadline, color: .systemGray)
+    
+    private let restaurantNameLabel: RLabel = {
+        let label = RLabel()
+        label.font = UIFont.preferredFont(forTextStyle: .title2)
+        return label
+    }()
+    
+    private let locationLabel: RLabel = {
+        let label = RLabel()
+        return label
+    }()
+    
+    private let restaurantTypeLabel: RLabel = {
+        let label = RLabel()
+        label.font = UIFont.preferredFont(forTextStyle: .subheadline)
+        label.textColor = .systemGray
+        return label
+    }()
+    
     private let favoriteImageView = RImageView(width: 25, height: 25)
     
     private lazy var stackViewVertical: UIStackView = {
@@ -52,12 +68,15 @@ class RestaurantCell: UITableViewCell {
     }
     
     private func setupLayout() {
-        addSubview(stackViewHorizontal)
+        contentView.addSubview(stackViewHorizontal)
+
+        let padding = 8.0
+        
         NSLayoutConstraint.activate([
-            stackViewHorizontal.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-            stackViewHorizontal.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            stackViewHorizontal.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            stackViewHorizontal.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)
+            stackViewHorizontal.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            stackViewHorizontal.heightAnchor.constraint(equalTo: contentView.heightAnchor, constant: -(padding * 2)),
+            stackViewHorizontal.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding * 2),
+            stackViewHorizontal.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -(padding * 2)),
         ])
     }
     

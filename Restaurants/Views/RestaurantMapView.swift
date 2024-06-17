@@ -13,7 +13,7 @@ class RestaurantMapView: UIView {
     private var mapView: MKMapView = {
         let mapView = MKMapView()
         mapView.translatesAutoresizingMaskIntoConstraints = false
-        mapView.layer.cornerRadius = 20
+        mapView.layer.cornerRadius = 10
         mapView.clipsToBounds = true
         mapView.isScrollEnabled = false
         mapView.isRotateEnabled = false

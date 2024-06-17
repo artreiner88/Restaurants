@@ -16,23 +16,30 @@ class RestaurantHeaderView: UIView {
     }()
     
     private var dimView: UIView = {
-        let view = UIView(frame: .zero)
+        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .black
         view.layer.opacity = 0.2
         return view
     }()
     
-    private var restaurantNameLabel = RLabel(font: .title1, color: .white)
+    private var restaurantNameLabel: RLabel = {
+        let label = RLabel()
+        label.font = UIFont.preferredFont(forTextStyle: .title1)
+        label.textColor = .white
+        return label
+    }()
     
     private var restaurantTypeLabel: RLabel = {
-        let label = RLabel(font: .headline, color: .white)
+        let label = RLabel()
+        label.font = UIFont.preferredFont(forTextStyle: .headline)
+        label.textColor = .white
         label.backgroundColor = .black
         return label
     }()
     
     private var favoriteIconImageView: UIImageView = {
-        let view = UIImageView(frame: .zero)
+        let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
