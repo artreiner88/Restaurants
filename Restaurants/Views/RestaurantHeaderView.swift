@@ -25,7 +25,7 @@ class RestaurantHeaderView: UIView {
     
     private var restaurantNameLabel: RLabel = {
         let label = RLabel()
-        label.font = UIFont.preferredFont(forTextStyle: .title1)
+        label.font = UIFont.preferredFont(forTextStyle: .extraLargeTitle)
         label.textColor = .white
         return label
     }()
@@ -65,9 +65,9 @@ class RestaurantHeaderView: UIView {
     
     private func setupLayout() {
         addSubview(restaurantImageView)
+        addSubview(dimView)
         addSubview(headerLabelsStackView)
         addSubview(favoriteIconImageView)
-        addSubview(dimView)
         
         NSLayoutConstraint.activate([
             restaurantImageView.topAnchor.constraint(equalTo: topAnchor),
@@ -79,7 +79,7 @@ class RestaurantHeaderView: UIView {
             headerLabelsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             headerLabelsStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
             
-            favoriteIconImageView.topAnchor.constraint(equalTo: topAnchor, constant: 40),
+            favoriteIconImageView.topAnchor.constraint(equalTo: topAnchor, constant: 64),
             favoriteIconImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             favoriteIconImageView.heightAnchor.constraint(equalToConstant: 30),
             favoriteIconImageView.widthAnchor.constraint(equalToConstant: 30),

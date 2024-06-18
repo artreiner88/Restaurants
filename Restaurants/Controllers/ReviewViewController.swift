@@ -10,6 +10,7 @@ import UIKit
 class ReviewViewController: UIViewController {
     
     var restaurant: Restaurant!
+    private lazy var rateRestaurantButtons = [awesomeButton, goodButton, okayButton, badButton, terribleButton]
     
     private let contentView: UIView = {
         let view = UIView()
@@ -76,9 +77,7 @@ class ReviewViewController: UIViewController {
     }()
     
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [
-            awesomeButton, goodButton, okayButton, badButton, terribleButton
-        ])
+        let stackView = UIStackView(arrangedSubviews: rateRestaurantButtons)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.alignment = .leading
@@ -90,7 +89,11 @@ class ReviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
-//        configureNavBar()
+        hideUIElements()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        animateUIElements()
     }
     
     private func configureNavBar() {
@@ -102,6 +105,39 @@ class ReviewViewController: UIViewController {
     
     @objc private func closeViewController() {
         dismiss(animated: true)
+    }
+    
+    private func hideUIElements() {
+        let moveRightTransform = CGAffineTransform.init(translationX: 600, y: 0)
+        let scaleUpTransform = CGAffineTransform.init(scaleX: 5.0, y: 5.0)
+        let moveScaleTransform = scaleUpTransform.concatenating(moveRightTransform)
+        let moveUpTransform = CGAffineTransform.init(translationX: 0, y: -600)
+        
+        // Make the button invisible and move off the screen
+        rateRestaurantButtons.forEach {
+            $0.transform = moveScaleTransform
+            $0.alpha = 0
+        }
+        
+        closeButton.transform = moveUpTransform
+    }
+    
+    private func animateUIElements() {
+        var delay = 0.1
+        
+        // Animate rate buttons
+        rateRestaurantButtons.forEach { button in
+            UIView.animate(withDuration: 0.4, delay: delay) {
+                button.alpha = 1.0
+                button.transform = .identity
+            }
+            delay += 0.05
+        }
+        
+        // Animate the close button
+        UIView.animate(withDuration: 0.4, delay: 0.1) {
+            self.closeButton.transform = .identity
+        }
     }
     
     private func setupLayout() {
