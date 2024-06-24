@@ -44,6 +44,12 @@ class RestaurantHeaderView: UIView {
         return view
     }()
     
+    private let restaurantRatingImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     private lazy var headerLabelsStackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [restaurantNameLabel, restaurantTypeLabel])
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -68,6 +74,7 @@ class RestaurantHeaderView: UIView {
         addSubview(dimView)
         addSubview(headerLabelsStackView)
         addSubview(favoriteIconImageView)
+        addSubview(restaurantRatingImageView)
         
         NSLayoutConstraint.activate([
             restaurantImageView.topAnchor.constraint(equalTo: topAnchor),
@@ -84,6 +91,11 @@ class RestaurantHeaderView: UIView {
             favoriteIconImageView.heightAnchor.constraint(equalToConstant: 30),
             favoriteIconImageView.widthAnchor.constraint(equalToConstant: 30),
             
+            restaurantRatingImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            restaurantRatingImageView.bottomAnchor.constraint(equalTo: headerLabelsStackView.topAnchor),
+            restaurantRatingImageView.heightAnchor.constraint(equalToConstant: 50),
+            restaurantRatingImageView.widthAnchor.constraint(equalToConstant: 52),
+            
             dimView.topAnchor.constraint(equalTo: restaurantImageView.topAnchor),
             dimView.leadingAnchor.constraint(equalTo: restaurantImageView.leadingAnchor),
             dimView.trailingAnchor.constraint(equalTo: restaurantImageView.trailingAnchor),
@@ -98,5 +110,13 @@ class RestaurantHeaderView: UIView {
         
         favoriteIconImageView.tintColor = restaurant.isFavorite ? .systemRed : .white
         favoriteIconImageView.image = restaurant.isFavorite ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
+        
+        if let rating = restaurant.rating {
+            setRatingImage(rating: rating)
+        }
+    }
+    
+    func setRatingImage(rating: Rating) {
+        restaurantRatingImageView.image = UIImage(named: rating.image)
     }
 }

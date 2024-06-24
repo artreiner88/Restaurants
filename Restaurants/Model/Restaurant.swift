@@ -15,6 +15,7 @@ struct Restaurant: Hashable {
     let phone: String
     let description: String
     var isFavorite: Bool
+    var rating: Rating?
     
     static func sampleData() -> [Restaurant] {
         return [

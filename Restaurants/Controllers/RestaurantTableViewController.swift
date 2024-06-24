@@ -37,6 +37,10 @@ class RestaurantTableViewController: UITableViewController {
         navigationItem.backButtonTitle = ""
         navigationController?.navigationBar.prefersLargeTitles = true
         
+        let rightBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        rightBarButton.tintColor = UIColor(red: 218/255, green: 96/255, blue: 51/255, alpha: 1.0)
+        navigationItem.rightBarButtonItem = rightBarButton
+        
         guard let appearance = navigationController?.navigationBar.standardAppearance else { return }
         appearance.configureWithTransparentBackground()
         
@@ -46,6 +50,12 @@ class RestaurantTableViewController: UITableViewController {
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.compactAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
+    }
+    
+    @objc private func addButtonTapped() {
+        let newRestaurantVC = NewRestaurantViewController()
+        let navigationController = UINavigationController(rootViewController: newRestaurantVC)
+        present(navigationController, animated: true)
     }
     
     private func configureDataSource() -> RestaurantDiffableDataSource {

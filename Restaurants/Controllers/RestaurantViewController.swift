@@ -8,7 +8,7 @@
 import UIKit
 
 class RestaurantViewController: UIViewController {
-
+    
     var restaurant: Restaurant!
     
     private let scrollView: UIScrollView = {
@@ -79,8 +79,11 @@ class RestaurantViewController: UIViewController {
     
     @objc private func rateButtonTapped() {
         let reviewVC = ReviewViewController()
-        reviewVC.restaurant = restaurant
-//        let navController = UINavigationController(rootViewController: reviewVC)
+        reviewVC.delegate = self
+        
+        if let image = UIImage(named: restaurant.image) {
+            reviewVC.setBackgroundImage(image: image)
+        }
         present(reviewVC, animated: true)
     }
     
@@ -131,5 +134,13 @@ class RestaurantViewController: UIViewController {
             rateRestaurantButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
             rateRestaurantButton.heightAnchor.constraint(equalToConstant: 50),
         ])
+    }
+}
+
+extension RestaurantViewController: ReviewViewControllerDelegate {
+    
+    func didSelectRating(rating: Rating) {
+        restaurant.rating = rating
+        restaurantHeaderView.setRatingImage(rating: rating)
     }
 }

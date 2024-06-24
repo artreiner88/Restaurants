@@ -7,10 +7,14 @@
 
 import UIKit
 
+protocol ReviewViewControllerDelegate {
+    func didSelectRating(rating: Rating)
+}
+
 class ReviewViewController: UIViewController {
     
-    var restaurant: Restaurant!
-    private lazy var rateRestaurantButtons = [awesomeButton, goodButton, okayButton, badButton, terribleButton]
+    var delegate: ReviewViewControllerDelegate!
+    private lazy var rateRestaurantButtons = [awesomeButton, goodButton, okayButton, badRatingButton, terribleButton]
     
     private let contentView: UIView = {
         let view = UIView()
@@ -19,7 +23,7 @@ class ReviewViewController: UIViewController {
     }()
     
     private lazy var backgroundImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: restaurant.image))
+        let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -41,38 +45,43 @@ class ReviewViewController: UIViewController {
         return button
     }()
     
-    private let awesomeButton: RButton = {
+    private lazy var awesomeButton: RButton = {
         let button = RButton()
         button.setTitle("Awesome", for: .normal)
         button.setImage(UIImage(named: "love"), for: .normal)
+        button.addTarget(self, action: #selector(didRatingButtonTapped), for: .touchUpInside)
         return button
     }()
     
-    private let goodButton: RButton = {
+    private lazy var goodButton: RButton = {
         let button = RButton()
         button.setTitle("Good", for: .normal)
         button.setImage(UIImage(named: "cool"), for: .normal)
+        button.addTarget(self, action: #selector(didRatingButtonTapped), for: .touchUpInside)
         return button
     }()
     
-    private let okayButton: RButton = {
+    private lazy var okayButton: RButton = {
         let button = RButton()
         button.setTitle("Okay", for: .normal)
         button.setImage(UIImage(named: "happy"), for: .normal)
+        button.addTarget(self, action: #selector(didRatingButtonTapped), for: .touchUpInside)
         return button
     }()
     
-    private let badButton: RButton = {
+    private lazy var badRatingButton: RButton = {
         let button = RButton()
         button.setTitle("Bad", for: .normal)
         button.setImage(UIImage(named: "sad"), for: .normal)
+        button.addTarget(self, action: #selector(didRatingButtonTapped), for: .touchUpInside)
         return button
     }()
     
-    private let terribleButton: RButton = {
+    private lazy var terribleButton: RButton = {
         let button = RButton()
         button.setTitle("Terrible", for: .normal)
         button.setImage(UIImage(named: "angry"), for: .normal)
+        button.addTarget(self, action: #selector(didRatingButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -96,15 +105,19 @@ class ReviewViewController: UIViewController {
         animateUIElements()
     }
     
-    private func configureNavBar() {
-        let image = UIImage(systemName: "xmark")
-        let button = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(closeViewController))
-        button.tintColor = UIColor(red: 218/255, green: 96/255, blue: 51/255, alpha: 1.0)
-        navigationItem.rightBarButtonItem = button
+    func setBackgroundImage(image: UIImage) {
+        backgroundImageView.image = image
     }
     
     @objc private func closeViewController() {
         dismiss(animated: true)
+    }
+    
+    @objc private func didRatingButtonTapped(sender: UIButton) {
+        guard let title = sender.currentTitle?.lowercased() else { return }
+        guard let rating = Rating(rawValue: title) else { return }
+        delegate.didSelectRating(rating: rating)
+        closeViewController()
     }
     
     private func hideUIElements() {
