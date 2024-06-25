@@ -1,5 +1,5 @@
 //
-//  NewRestaurantFormFieldCell.swift
+//  NewRestaurantTextFieldCell.swift
 //  Restaurants
 //
 //  Created by Artur Reiner on 24.06.24.
@@ -9,18 +9,18 @@ import UIKit
 
 class NewRestaurantTextFieldCell: UITableViewCell, UITextFieldDelegate {
     
-    static let cellID = "formField"
+    static let cellID = "textFieldCell"
     
     private let textFieldLabel: RLabel = {
         let label = RLabel()
-        label.text = "Name"
+        label.font = UIFont.preferredFont(forTextStyle: .headline)
+        label.textColor = .darkGray
         return label
     }()
     
     private lazy var textField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = "type me in"
         textField.borderStyle = .roundedRect
         textField.textColor = .label
         textField.font = UIFont.preferredFont(forTextStyle: .body)
@@ -31,7 +31,6 @@ class NewRestaurantTextFieldCell: UITableViewCell, UITextFieldDelegate {
         textField.returnKeyType = .next
         textField.clearButtonMode = .whileEditing
         textField.autocorrectionType = .no
-        
         return textField
     }()
     
@@ -46,6 +45,7 @@ class NewRestaurantTextFieldCell: UITableViewCell, UITextFieldDelegate {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .none
         setupLayout()
     }
     
@@ -57,12 +57,17 @@ class NewRestaurantTextFieldCell: UITableViewCell, UITextFieldDelegate {
         contentView.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
-            textField.heightAnchor.constraint(equalToConstant: 32)
+            textField.heightAnchor.constraint(equalToConstant: 40)
         ])
+    }
+    
+    func configure(with labelText: String, and textFieldPlaceholder: String) {
+        textFieldLabel.text = labelText
+        textField.placeholder = textFieldPlaceholder
     }
 }

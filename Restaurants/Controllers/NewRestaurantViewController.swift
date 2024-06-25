@@ -11,6 +11,7 @@ class NewRestaurantViewController: UIViewController {
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: view.bounds)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(NewRestaurantImagePickerCell.self, forCellReuseIdentifier: NewRestaurantImagePickerCell.cellID)
         tableView.register(NewRestaurantTextFieldCell.self, forCellReuseIdentifier: NewRestaurantTextFieldCell.cellID)
         tableView.register(NewRestaurantTextViewCell.self, forCellReuseIdentifier: NewRestaurantTextViewCell.cellID)
@@ -19,7 +20,7 @@ class NewRestaurantViewController: UIViewController {
         tableView.dataSource = self
         return tableView
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavBar()
@@ -28,6 +29,7 @@ class NewRestaurantViewController: UIViewController {
     
     private func configureNavBar() {
         title = "New Restaurant"
+        navigationController?.navigationBar.prefersLargeTitles = true
         let rightBarButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
         let leftBarButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeViewController))
         rightBarButton.tintColor = UIColor(red: 218/255, green: 96/255, blue: 51/255, alpha: 1.0)
@@ -61,15 +63,37 @@ extension NewRestaurantViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell: UITableViewCell
-        if indexPath.row == 0 {
-            cell = tableView.dequeueReusableCell(withIdentifier: NewRestaurantImagePickerCell.cellID, for: indexPath)
-        } else if indexPath.row == 5 {
-            cell = tableView.dequeueReusableCell(withIdentifier: NewRestaurantTextViewCell.cellID, for: indexPath) as! NewRestaurantTextViewCell
-        } else {
-            cell = tableView.dequeueReusableCell(withIdentifier: NewRestaurantTextFieldCell.cellID, for: indexPath) as! NewRestaurantTextFieldCell
+        
+        if indexPath.row == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: NewRestaurantTextFieldCell.cellID, for: indexPath) as! NewRestaurantTextFieldCell
+            cell.configure(with: "NAME", and: "Fill in the resaturant name")
+            return cell
         }
-        cell.selectionStyle = .none
+        
+        if indexPath.row == 2 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: NewRestaurantTextFieldCell.cellID, for: indexPath) as! NewRestaurantTextFieldCell
+            cell.configure(with: "TYPE", and: "Fill in the resaturant type")
+            return cell
+        }
+        
+        if indexPath.row == 3 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: NewRestaurantTextFieldCell.cellID, for: indexPath) as! NewRestaurantTextFieldCell
+            cell.configure(with: "ADDRESS", and: "Fill in the resaturant address")
+            return cell
+        }
+        
+        if indexPath.row == 4 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: NewRestaurantTextFieldCell.cellID, for: indexPath) as! NewRestaurantTextFieldCell
+            cell.configure(with: "PHONE", and: "Fill in the resaturant phone")
+            return cell
+        }
+        
+        if indexPath.row == 5 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: NewRestaurantTextViewCell.cellID, for: indexPath) as! NewRestaurantTextViewCell
+            return cell
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: NewRestaurantImagePickerCell.cellID, for: indexPath) as! NewRestaurantImagePickerCell
         return cell
     }
 }

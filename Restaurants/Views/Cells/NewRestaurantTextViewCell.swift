@@ -9,11 +9,13 @@ import UIKit
 
 class NewRestaurantTextViewCell: UITableViewCell {
     
-    static let cellID = "texViewCell"
+    static let cellID = "textViewCell"
     
     private let textViewLabel: RLabel = {
         let label = RLabel()
-        label.text = "Desciption"
+        label.font = UIFont.preferredFont(forTextStyle: .headline)
+        label.textColor = .darkGray
+        label.text = "DESCRIPTION"
         return label
     }()
     
@@ -29,7 +31,17 @@ class NewRestaurantTextViewCell: UITableViewCell {
         textView.keyboardType = .default
         textView.returnKeyType = .next
         textView.autocorrectionType = .no
+        textView.delegate = self
         return textView
+    }()
+    
+    private lazy var textViewPlaceholder: RLabel = {
+        let label = RLabel()
+        label.text = "Fill in the restaurant description"
+        label.textColor = .systemGray3
+        label.sizeToFit()
+        label.isHidden = !textView.text.isEmpty
+        return label
     }()
     
     private lazy var stackView: UIStackView = {
@@ -43,6 +55,7 @@ class NewRestaurantTextViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .none
         setupLayout()
     }
     
@@ -52,14 +65,33 @@ class NewRestaurantTextViewCell: UITableViewCell {
     
     private func setupLayout() {
         contentView.addSubview(stackView)
+        textView.addSubview(textViewPlaceholder)
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
-            textView.heightAnchor.constraint(equalToConstant: 200)
+            textView.heightAnchor.constraint(equalToConstant: 200),
+            
+            textViewPlaceholder.topAnchor.constraint(equalTo: textView.topAnchor, constant: 8),
+            textViewPlaceholder.leadingAnchor.constraint(equalTo: textView.leadingAnchor, constant: 8)
         ])
+    }
+}
+
+extension NewRestaurantTextViewCell: UITextViewDelegate {
+    
+    func textViewDidChange(_ textView: UITextView) {
+        textViewPlaceholder.isHidden = !textView.text.isEmpty
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        textViewPlaceholder.isHidden = true
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        textViewPlaceholder.isHidden = !textView.text.isEmpty
     }
 }
