@@ -45,8 +45,6 @@ class RestaurantMapView: UIView {
         // Get location
         let geocoder = CLGeocoder()
         
-        print(location)
-        
         geocoder.geocodeAddressString(location) { [self] placemarks, error in
             if let error = error {
                 print(error.localizedDescription)

@@ -10,26 +10,24 @@ import UIKit
 class RestaurantContactsView: UIView {
     
     private var addressLabel: RLabel = {
-        let label = RLabel()
-        label.font = UIFont.preferredFont(forTextStyle: .headline)
+        let label = RLabel(textStyle: .headline, textColor: .label)
         label.text = "ADDRESS"
         return label
     }()
     
     private var phoneLabel: RLabel = {
-        let label = RLabel()
-        label.font = UIFont.preferredFont(forTextStyle: .headline)
+        let label = RLabel(textStyle: .headline, textColor: .label)
         label.text = "PHONE"
         return label
     }()
     
     private let fullAddressLabel: RLabel = {
-        let label = RLabel()
+        let label = RLabel(textStyle: .body, textColor: .label)
         return label
     }()
     
     private let phoneNumberLabel: RLabel = {
-        let label = RLabel()
+        let label = RLabel(textStyle: .body, textColor: .label)
         return label
     }()
     

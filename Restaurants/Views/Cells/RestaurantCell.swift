@@ -11,27 +11,24 @@ class RestaurantCell: UITableViewCell {
     
     static let cellID = "restaurantCell"
     
-    private let restaurantImageView = RImageView(width: 120, height: 120)
+    private let restaurantImageView = RImageView(frame: .zero)
     
     private let restaurantNameLabel: RLabel = {
-        let label = RLabel()
-        label.font = UIFont.preferredFont(forTextStyle: .title2)
+        let label = RLabel(textStyle: .title2, textColor: .label)
         return label
     }()
     
     private let locationLabel: RLabel = {
-        let label = RLabel()
+        let label = RLabel(textStyle: .body, textColor: .label)
         return label
     }()
     
     private let restaurantTypeLabel: RLabel = {
-        let label = RLabel()
-        label.font = UIFont.preferredFont(forTextStyle: .subheadline)
-        label.textColor = .systemGray
+        let label = RLabel(textStyle: .subheadline, textColor: .systemGray)
         return label
     }()
     
-    private let favoriteImageView = RImageView(width: 25, height: 25)
+    private let favoriteImageView = RImageView(frame: .zero)
     
     private lazy var stackViewVertical: UIStackView = {
         let stack = UIStackView()
@@ -77,11 +74,18 @@ class RestaurantCell: UITableViewCell {
             stackViewHorizontal.heightAnchor.constraint(equalTo: contentView.heightAnchor, constant: -(padding * 2)),
             stackViewHorizontal.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding * 2),
             stackViewHorizontal.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -(padding * 2)),
+            
+            restaurantImageView.heightAnchor.constraint(equalToConstant: 120),
+            restaurantImageView.widthAnchor.constraint(equalToConstant: 120),
+            
+            favoriteImageView.heightAnchor.constraint(equalToConstant: 25),
+            favoriteImageView.widthAnchor.constraint(equalToConstant: 25),
+            
         ])
     }
     
     func set(restaurant: Restaurant) {
-        restaurantImageView.image = UIImage(named: restaurant.image)
+        restaurantImageView.image = UIImage(data: restaurant.image)
         restaurantNameLabel.text = restaurant.name
         locationLabel.text = restaurant.location
         restaurantTypeLabel.text = restaurant.type

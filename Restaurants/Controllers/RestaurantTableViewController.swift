@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import CoreData
 
 class RestaurantTableViewController: UITableViewController {
     
-    private var restaurants = Restaurant.sampleData()
+    private var restaurants: [Restaurant] = []
     private lazy var dataSource = configureDataSource()
+    private var fetchResultController: NSFetchedResultsController<Restaurant>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,10 +20,12 @@ class RestaurantTableViewController: UITableViewController {
         configureTableView()
         setupLongPressGestureRecognizer()
         
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Restaurant>()
-        snapshot.appendSections([.all])
-        snapshot.appendItems(restaurants, toSection: .all)
-        dataSource.apply(snapshot, animatingDifferences: true)
+        fetchRestaurantsData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNeedsUpdateContentUnavailableConfiguration()
     }
     
     private func configureTableView() {
@@ -52,10 +56,38 @@ class RestaurantTableViewController: UITableViewController {
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
     
+    private func fetchRestaurantsData() {
+        let fetchRequest: NSFetchRequest<Restaurant> = Restaurant.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+            let context = appDelegate.persistentContainer.viewContext
+            fetchResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+            fetchResultController.delegate = self
+            
+            do {
+                try fetchResultController.performFetch()
+                updateSnapshot(animated: false)
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    private func deleteRestaurant(restaurant: Restaurant) {
+        if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+            let context = appDelegate.persistentContainer.viewContext
+            
+            // Delete the item
+            context.delete(restaurant)
+            appDelegate.saveContext()
+        }
+    }
+    
     @objc private func addButtonTapped() {
-        let newRestaurantVC = NewRestaurantViewController()
-        let navigationController = UINavigationController(rootViewController: newRestaurantVC)
-        present(navigationController, animated: true)
+        let nav = UINavigationController(rootViewController: NewRestaurantViewController())
+        present(nav, animated: true)
     }
     
     private func configureDataSource() -> RestaurantDiffableDataSource {
@@ -67,6 +99,31 @@ class RestaurantTableViewController: UITableViewController {
             return cell
         }
         return dataSource
+    }
+    
+    private func updateSnapshot(animated: Bool) {
+        if let fetchedObjects = fetchResultController.fetchedObjects {
+            restaurants = fetchedObjects
+        }
+        
+        // Create a snapshot and populate the data
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Restaurant>()
+        snapshot.appendSections([.all])
+        snapshot.appendItems(restaurants, toSection: .all)
+        dataSource.apply(snapshot, animatingDifferences: animated)
+        setNeedsUpdateContentUnavailableConfiguration()
+    }
+    
+    override func updateContentUnavailableConfiguration(using state: UIContentUnavailableConfigurationState) {
+        if restaurants.isEmpty {
+            var config = UIContentUnavailableConfiguration.empty()
+            config.image = .init(systemName: "storefront")
+            config.text = "No Restaurants"
+            config.secondaryText = "Add a new Restaurant"
+            contentUnavailableConfiguration = config
+        } else {
+            contentUnavailableConfiguration = nil
+        }
     }
     
     private func showOptionMenu(for indexPath: IndexPath) {
@@ -90,8 +147,11 @@ class RestaurantTableViewController: UITableViewController {
         ) { _ in
             let cell = self.tableView.cellForRow(at: indexPath) as! RestaurantCell
             self.restaurants[indexPath.row].isFavorite.toggle()
-            
             cell.favorite()
+            
+            if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+                appDelegate.saveContext()
+            }
         }
         
         [cancelAction, reserveAction, favoriteAction].forEach(optionMenu.addAction(_:))
@@ -115,9 +175,9 @@ class RestaurantTableViewController: UITableViewController {
         }
         
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { action, view, completion in
-            var snapshot = self.dataSource.snapshot()
-            snapshot.deleteItems([restaurant])
-            self.dataSource.apply(snapshot, animatingDifferences: true)
+            self.deleteRestaurant(restaurant: restaurant)
+            self.updateSnapshot(animated: true)
+            self.setNeedsUpdateContentUnavailableConfiguration()
             completion(true)
         }
         
@@ -126,7 +186,7 @@ class RestaurantTableViewController: UITableViewController {
             
             let activityController: UIActivityViewController
             
-            if let imageToShare = UIImage(named: restaurant.image) {
+            if let imageToShare = UIImage(data: restaurant.image) {
                 activityController = UIActivityViewController(activityItems: [defaultText, imageToShare], applicationActivities: nil)
             } else {
                 activityController = UIActivityViewController(activityItems: [defaultText], applicationActivities: nil)
@@ -142,6 +202,14 @@ class RestaurantTableViewController: UITableViewController {
         shareAction.image = UIImage(systemName: "square.and.arrow.up")
         
         return UISwipeActionsConfiguration(actions: [deleteAction, shareAction])
+    }
+}
+
+
+extension RestaurantTableViewController: NSFetchedResultsControllerDelegate {
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<any NSFetchRequestResult>) {
+        updateSnapshot(animated: true)
     }
 }
 

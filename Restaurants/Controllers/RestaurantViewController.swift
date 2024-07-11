@@ -32,11 +32,10 @@ class RestaurantViewController: UIViewController {
         return view
     }()
     
-    private lazy var restaurantDescriptionView: RestaurantDescriptionView = {
-        let view = RestaurantDescriptionView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.setDescription(text: restaurant.description)
-        return view
+    private lazy var restaurantDescriptionLabel: RLabel = {
+        let label = RLabel(textStyle: .body, textColor: .label)
+        label.text = restaurant.summary
+        return label
     }()
     
     private lazy var restaurantContactsView: RestaurantContactsView = {
@@ -81,7 +80,7 @@ class RestaurantViewController: UIViewController {
         let reviewVC = ReviewViewController()
         reviewVC.delegate = self
         
-        if let image = UIImage(named: restaurant.image) {
+        if let image = UIImage(data: restaurant.image) {
             reviewVC.setBackgroundImage(image: image)
         }
         present(reviewVC, animated: true)
@@ -96,7 +95,7 @@ class RestaurantViewController: UIViewController {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         
-        [restaurantHeaderView, restaurantDescriptionView, restaurantContactsView, restaurantMapView, rateRestaurantButton].forEach(contentView.addSubview(_:))
+        [restaurantHeaderView, restaurantDescriptionLabel, restaurantContactsView, restaurantMapView, rateRestaurantButton].forEach(contentView.addSubview(_:))
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -115,13 +114,13 @@ class RestaurantViewController: UIViewController {
             restaurantHeaderView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             restaurantHeaderView.heightAnchor.constraint(equalToConstant: 400),
             
-            restaurantDescriptionView.topAnchor.constraint(equalTo: restaurantHeaderView.bottomAnchor, constant: 16),
-            restaurantDescriptionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            restaurantDescriptionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            restaurantDescriptionLabel.topAnchor.constraint(equalTo: restaurantHeaderView.bottomAnchor, constant: 16),
+            restaurantDescriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            restaurantDescriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
-            restaurantContactsView.topAnchor.constraint(equalTo: restaurantDescriptionView.bottomAnchor, constant: 16),
-            restaurantContactsView.leadingAnchor.constraint(equalTo: restaurantDescriptionView.leadingAnchor),
-            restaurantContactsView.trailingAnchor.constraint(equalTo: restaurantDescriptionView.trailingAnchor),
+            restaurantContactsView.topAnchor.constraint(equalTo: restaurantDescriptionLabel.bottomAnchor, constant: 16),
+            restaurantContactsView.leadingAnchor.constraint(equalTo: restaurantDescriptionLabel.leadingAnchor),
+            restaurantContactsView.trailingAnchor.constraint(equalTo: restaurantDescriptionLabel.trailingAnchor),
             
             restaurantMapView.topAnchor.constraint(equalTo: restaurantContactsView.bottomAnchor, constant: 16),
             restaurantMapView.leadingAnchor.constraint(equalTo: restaurantContactsView.leadingAnchor),
@@ -138,9 +137,11 @@ class RestaurantViewController: UIViewController {
 }
 
 extension RestaurantViewController: ReviewViewControllerDelegate {
-    
-    func didSelectRating(rating: Rating) {
-        restaurant.rating = rating
+    func didSelectRating(rating: Restaurant.Rating) {
         restaurantHeaderView.setRatingImage(rating: rating)
+        if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+            restaurant.rating = rating
+            appDelegate.saveContext()
+        }
     }
 }

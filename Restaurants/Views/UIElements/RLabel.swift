@@ -17,18 +17,19 @@ class RLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
-    convenience init() {
+    convenience init(textStyle: UIFont.TextStyle, textColor: UIColor) {
         self.init(frame: .zero)
+        self.font = UIFont.preferredFont(forTextStyle: textStyle)
+        self.textColor = textColor
+        
         configure()
     }
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
-        textColor = .label
-        font = UIFont.preferredFont(forTextStyle: .body)
         numberOfLines = 0
         adjustsFontForContentSizeCategory = true
         adjustsFontSizeToFitWidth = true
-        minimumScaleFactor = 0.5
+        minimumScaleFactor = 0.7
     }
 }

@@ -88,8 +88,8 @@ class RestaurantHeaderView: UIView {
             
             favoriteIconImageView.topAnchor.constraint(equalTo: topAnchor, constant: 64),
             favoriteIconImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            favoriteIconImageView.heightAnchor.constraint(equalToConstant: 30),
-            favoriteIconImageView.widthAnchor.constraint(equalToConstant: 30),
+            favoriteIconImageView.heightAnchor.constraint(equalToConstant: 32),
+            favoriteIconImageView.widthAnchor.constraint(equalToConstant: 32),
             
             restaurantRatingImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             restaurantRatingImageView.bottomAnchor.constraint(equalTo: headerLabelsStackView.topAnchor),
@@ -104,7 +104,7 @@ class RestaurantHeaderView: UIView {
     }
     
     func configure(with restaurant: Restaurant) {
-        restaurantImageView.image = UIImage(named: restaurant.image)
+        restaurantImageView.image = UIImage(data: restaurant.image)
         restaurantNameLabel.text = restaurant.name
         restaurantTypeLabel.text = restaurant.type
         
@@ -116,7 +116,7 @@ class RestaurantHeaderView: UIView {
         }
     }
     
-    func setRatingImage(rating: Rating) {
+    func setRatingImage(rating: Restaurant.Rating) {
         restaurantRatingImageView.image = UIImage(named: rating.image)
     }
 }

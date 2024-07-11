@@ -11,24 +11,17 @@ class RImageView: UIImageView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        translatesAutoresizingMaskIntoConstraints = false
-        layer.cornerRadius = 10
-        clipsToBounds = true
+        configure()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    convenience init(width: CGFloat, height: CGFloat) {
-        self.init(frame: .zero)
-        configure(with: width, and: height)
-    }
-    
-    private func configure(with width: CGFloat, and height: CGFloat) {
-        NSLayoutConstraint.activate([
-            heightAnchor.constraint(equalToConstant: height),
-            widthAnchor.constraint(equalToConstant: width)
-        ])
+    private func configure() {
+        translatesAutoresizingMaskIntoConstraints = false
+        layer.cornerRadius = 10
+        contentMode = .scaleAspectFill
+        clipsToBounds = true
     }
 }

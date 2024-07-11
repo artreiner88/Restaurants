@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ReviewViewControllerDelegate {
-    func didSelectRating(rating: Rating)
+    func didSelectRating(rating: Restaurant.Rating)
 }
 
 class ReviewViewController: UIViewController {
@@ -115,7 +115,7 @@ class ReviewViewController: UIViewController {
     
     @objc private func didRatingButtonTapped(sender: UIButton) {
         guard let title = sender.currentTitle?.lowercased() else { return }
-        guard let rating = Rating(rawValue: title) else { return }
+        guard let rating = Restaurant.Rating(rawValue: title) else { return }
         delegate.didSelectRating(rating: rating)
         closeViewController()
     }
